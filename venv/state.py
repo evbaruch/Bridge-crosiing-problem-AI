@@ -17,30 +17,40 @@ def create(l):
     return[l+[0],[],[]]
 
 #Returns a list of states one cross away from state x (the children of x)
+
 def get_next(x):
 
     # your code here
-    ns = []
-    if x[0] == []:
+    # x is a state
+    # return a list of states
+    # each state is a list of three items:
+    # 1. Who is on the left side? each person is represented by its crossing time. 0=flashlight
+    # 2. Who is on the right?
+    # 3. A list of moves. Every move is a list the persons(crossing times) that crossed the bridge
+    # start: all people on the left side
+    # target: all people on the right
+
+    ns = [] #ns is the list of next states
+    if x[0] == []: #if the flashlight is on the left side
         return 0
-    if 0 in x[1]:
-        for i in x[1]:
-            if i != 0:
-                y = create(x[0].copy()+[i])
+    if 0 in x[1]: #if the flashlight is on the right side
+        for i in x[1]: #for all the people on the right side
+            if i != 0: #that are not the flashlight
+                y = create(x[0].copy()+[i]) #create a new state
                 y[1] = x[1].copy()
-                y[1].remove(i)
-                y[1].remove(0)
-                y[2] = x[2].copy()+ [[i,0]]
-                ns += [y]
-    else:
-        for i in x[0]:
-            for k in x[0][x[0].index(i)+1:]:
-                if i != 0 and k != 0:
-                    y = [x[0].copy(),x[1].copy()+[i,k,0],x[2].copy()+[[i,k]]]
-                    y[0].remove(k)
-                    y[0].remove(i)
-                    y[0].remove(0)
-                    ns += [y]
+                y[1].remove(i) #remove the people from the right side
+                y[1].remove(0) #remove the flashlight from the right side
+                y[2] = x[2].copy()+ [[i,0]] #create a new state
+                ns += [y] #add the new state to the list of next states
+    else: #if the flashlight is on the left side
+        for i in x[0]:  #for all the people on the left side
+            for k in x[0][x[0].index(i)+1:]: #for all the people on the left side
+                if i != 0 and k != 0: #that are not the flashlight
+                    y = [x[0].copy(),x[1].copy()+[i,k,0],x[2].copy()+[[i,k]]] #create a new state
+                    y[0].remove(k) #remove the people from the left side
+                    y[0].remove(i) #remove the people from the left side
+                    y[0].remove(0) #remove the flashlight from the left side
+                    ns += [y] #add the new state to the list of next states
 
 
 
