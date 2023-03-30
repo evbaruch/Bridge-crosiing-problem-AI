@@ -35,7 +35,7 @@ def remove(f):      # remove and return the root of f
     heapify(f,0)    # fixing the heap
     return s
 
-def val(s):         # returns path len + heuristic distance from target
+def val(s):    # returns path len + heuristic distance from target
     return state.hdistance(s)+state.path_len(s)
 '''
 for greedy best first search val returns hdistance
