@@ -31,8 +31,8 @@ def get_next(x):
     # target: all people on the right
 
     ns = [] #ns is the list of next states
-    if x[0] == []: #if the flashlight is on the left side
-        return 0
+    if x[0] == [0]: #if the state is empty to begin with
+        return [[0]]
     if 0 in x[1]: #if the flashlight is on the right side
         for i in x[1]: #for all the people on the right side
             if i != 0: #that are not the flashlight
@@ -51,6 +51,9 @@ def get_next(x):
                     y[0].remove(i) #remove the people from the left side
                     y[0].remove(0) #remove the flashlight from the left side
                     ns += [y] #add the new state to the list of next states
+    if 0 in x[0] and len(x[0]) == 2:
+        return [[[],[]+x[0],[[]+x[0]]]]
+
 
 
 
