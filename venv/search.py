@@ -3,6 +3,11 @@
 import state
 import frontier
 
+"""
+Evyatar Baruch 323916403
+Sapir Bashan 214103368
+"""
+
 def search(n):
      s=state.create(n)
      print(s)#the print function was here
